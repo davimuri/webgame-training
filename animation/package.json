@@ -1,7 +1,7 @@
 {
-  "name": "fourbyfour",
+  "name": "animation",
   "version": "0.0.1",
-  "description": "Simple game called 4x4",
+  "description": "Learning web game development",
   "scripts": {
     "build": "webpack --mode=production",
     "start": "webpack serve --mode=development"
