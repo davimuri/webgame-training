@@ -18,6 +18,10 @@ export default class Ball {
     this.#x = x;
     this.#y = y;
     this.#radius = Ball.MIN_RADIUS;
+    this.#initPropertyAnimator();
+  }
+
+  #initPropertyAnimator() {
     const self = this;
     const random = getRandomInt(3);
     let animationSetting = {
@@ -28,13 +32,13 @@ export default class Ball {
     if (random == 1) {
       animationSetting = {
         "setter": v => self.setX(v),
-        "start": x,
+        "start": self.#x,
         "end": Ball.MAX_X
       };
     } else if (random == 2) {
       animationSetting = {
         "setter": v => self.setY(v),
-        "start": y,
+        "start": self.#y,
         "end": Ball.MAX_Y
       };
     }
@@ -47,6 +51,10 @@ export default class Ball {
 
   startAnimation() {
     this.#propertyAnimator.start();
+  }
+
+  stopAnimation() {
+    this.#propertyAnimator.stop();
   }
 
   update(deltaTime) {
@@ -62,6 +70,22 @@ export default class Ball {
     ctx.beginPath();
     ctx.arc(this.#x, this.#y, this.#radius, 0, 2*Math.PI, false);
     ctx.fill();
+  }
+
+  isPointInside(x, y) {
+    const deltaX = this.#x - x;
+    const deltaY = this.#y - y;
+    return deltaX * deltaX + deltaY * deltaY <= this.#radius * this.#radius;
+  }
+
+  move(deltaX, deltaY) {
+    this.#x += deltaX;
+    this.#y += deltaY;
+  }
+
+  restartAnimation() {
+    this.#initPropertyAnimator();
+    this.startAnimation();
   }
 
   setRadius(radius) {
