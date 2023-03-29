@@ -3,6 +3,7 @@
 
 # References
 * [Isometric math](https://clintbellanger.net/articles/isometric_math/)
+* [Game AI repo](https://github.com/Juriy/gameai/tree/master/js)
 
 # Node + TypeScript
 
